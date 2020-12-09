@@ -1,0 +1,29 @@
+{
+  "name": "snowflake-api",
+  "version": "1.0.0",
+  "description": "A package for using the Snowflake API Easily!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udit2303/snowflake-api.git"
+  },
+  "keywords": [
+    "API",
+    "Snowflake",
+    "SnowflakeDev",
+    "meme",
+    "chatbot"
+  ],
+  "author": "Udit Shrivastava <udit2303@gmail.com, https://udit.gq>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/udit2303/snowflake-api/issues"
+  },
+  "homepage": "https://github.com/udit2303/snowflake-api#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}

@@ -5,10 +5,10 @@ export class API {
     public chatbot(message: string, name: string, gender: string, userid: string): Promise<string>;
     public token(): Promise<String>;
     public meme(subreddit: string): Promise<Object>;
-    public cat(): Promise<Buffer>;
-    public dog(): Promise<Buffer>;
-    public duck(): Promise<Buffer>;
-    public fox(): Promise<Buffer>;
+    public cat(): Promise<ArrayBuffer>;
+    public dog(): Promise<ArrayBuffer>;
+    public duck(): Promise<ArrayBuffer>; 
+    public fox(): Promise<ArrayBuffer>;
     public roast(): Promise<String>;
     public pokemon(name: string): Promise<Object>;
     public morse(message: string, type: string): Promise<String>;
@@ -17,7 +17,7 @@ export class API {
     public tokeninfo(token: string): Promise<Object>;
     public base64(message: string, type: string): Promise<String>;
     public me(): Promise<Object>;
-    public on(error: string): Event;
+    public on(error): error
 }
 
 export const version: string;

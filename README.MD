@@ -19,7 +19,7 @@ api.chatbot("Hello There").then(console.log);
 api.morse("Test").then(console.log);
 ```
 # Functions
-`chatbot(message*, name[Chatbot], gender[female], userid[1])` - Returns message sent by the Chatbot *Values in [] are default values and the parameters are optional*
+`chatbot(message*, name[Chatbot], gender[female], userid[1])` - Returns message sent by the Chatbot *(Values in [] are default values and the parameters are optional)*
 
 `token()` - Returns random Discord Token *(Note: This token is not valid)*
 

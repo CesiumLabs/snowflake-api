@@ -8,21 +8,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/udit2303/snowflake-api.git"
+    "url": "git+https://github.com/DevSnowflake/snowflake-api.git"
   },
   "keywords": [
     "API",
     "Snowflake",
     "SnowflakeDev",
     "meme",
-    "chatbot"
+    "chatbot",
+    "dog api",
+    "cat api",
+    "morse api"
   ],
   "author": "Udit Shrivastava <udit2303@gmail.com, https://udit.gq>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/udit2303/snowflake-api/issues"
+    "url": "https://github.com/DevSnowflake/snowflake-api/issues"
   },
-  "homepage": "https://github.com/udit2303/snowflake-api#readme",
+  "homepage": "https://github.com/DevSnowflake/snowflake-api#readme",
   "dependencies": {
     "node-fetch": "^2.6.1"
   }

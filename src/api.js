@@ -2,8 +2,11 @@ const err = require('./APIError');
 const base = 'http://api.snowflakedev.cf:9019/api'
 const fetch = require("node-fetch");
 let token;
-class API{
+const EventEmitter = require("events");
+class API extends EventEmitter{
+ 
     constructor(Token){
+        super()
 
 
         /**Token - API Token
@@ -15,7 +18,6 @@ class API{
         if(typeof(Token) != 'string') throw new err("Invalid type of API Key was provided");
         token = Token;
     }
-
 
     /**meme - Returns a meme from Subreddit
      * @param {string} subreddit Subreddit to get the meme from 
@@ -33,7 +35,14 @@ class API{
             }
         });
         const response = await res.json();
-        if(response.error) throw new err(response.error)
+        if(res.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
+        if(response.error) {
+          this.emit('error', response.error);
+        return undefined;
+        }
         return response;
     };
 
@@ -58,8 +67,15 @@ class API{
                 'authorization': token
             }
         });
+        if(res.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
         const response = await res.json();
-         if(response.error) throw new err(response.error)
+        if(response.error) {
+            this.emit('error', response.error);
+            return undefined;
+        }
         return response.message;
     }
 
@@ -74,9 +90,16 @@ class API{
             headers:{
                 'authorization': token
             }
-        })
+        });
+        if(res.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
         const response = await res.json();
-        if(response.error) throw new err(response.error)
+        if(response.error) {
+            this.emit('error', response.error);
+            return undefined;
+        }
         return response.roast; 
     }
 
@@ -93,7 +116,11 @@ class API{
             }
         });
         const buffer = await res.buffer();
-       return buffer;
+        if(res.status == 401){
+            this.emit('error', 'Invalid API Key')
+            return undefined;
+        }
+        return buffer;
     }
 
 
@@ -109,6 +136,10 @@ class API{
             }
         });
         const buffer = await res.buffer();
+        if(res.status == 401){
+            this.emit('error', 'Invalid API Key')
+            return undefined;
+        }
         return buffer;
     }
 
@@ -125,6 +156,10 @@ class API{
             }
         });
         const buffer = await res.buffer();
+        if(res.status == 401){
+            this.emit('error', 'Invalid API Key')
+            return undefined;
+        }
         return buffer;
     }
 
@@ -141,6 +176,10 @@ class API{
             }
         });
         const buffer = await res.buffer();
+        if(res.status == 401){
+            this.emit('error', 'Invalid API Key')
+            return undefined;
+        }
         return buffer;
     }
 
@@ -162,8 +201,15 @@ class API{
                 'authorization': token
             }
         });
+        if(res.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
         const response = await res.json();
-       if(response.error) throw new err(response.error);
+        if(response.error) {
+            this.emit('error', response.error);
+            return undefined;
+        }
         return response.data;
     }
 
@@ -183,8 +229,15 @@ class API{
                 'authorization': token
             }
         });
+        if(res.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
         const response = await res.json();
-       if(response.error) throw new err(response.error);
+        if(response.error) {
+            this.emit('error', response.error);
+            return undefined;
+        }
         return response.data;
     }
 
@@ -200,8 +253,15 @@ class API{
                 'authorization': token
             }
         });
+        if(res.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
         const response = await res.json();
-       if(response.error) throw new err(response.error);
+        if(response.error) {
+            this.emit('error', response.error);
+            return undefined;
+        }
         return response.token;
     }
 
@@ -219,8 +279,15 @@ class API{
                 'authorization': token
             }
         });
+        if(res.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
         const response = await res.json();
-       if(response.error) throw new err(response.error);
+        if(response.error) {
+            this.emit('error', response.error);
+            return undefined;
+        }
         return response;
     }
 
@@ -238,8 +305,15 @@ class API{
                 'authorization': token
             }
         });
+        if(res.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
         const response = await res.json();
-       if(response.error) throw new err(response.error);
+        if(response.error) {
+            this.emit('error', response.error);
+            return undefined;
+        }
         return response.message;
     }
     
@@ -260,8 +334,15 @@ class API{
                 'authorization': token
             }
         });
+        if(res.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
         const response = await res.json();
-       if(response.error) throw new err(response.error);
+        if(response.error) {
+            this.emit('error', response.error);
+            return undefined;
+        }
         return response;
     }
 
@@ -279,8 +360,15 @@ class API{
                 'authorization': token
             }
         });
+        if(res.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
         const response = await res.json();
-       if(response.error) throw new err(response.error);
+        if(response.error) {
+            this.emit('error', response.error);
+            return undefined;
+        }
         return response;
     };
 
@@ -296,8 +384,15 @@ class API{
                  'authorization': token
              }
          });
+         if(response.status == 401){
+            this.emit("error", "Invalid API key was provided");
+            return undefined;
+        }
          const res = await response.json();
-         if(res.error) throw new err(res.error);
+         if(response.error) {
+            this.emit('error', response.error);
+            return undefined;
+        }
          return res;
      }
 }

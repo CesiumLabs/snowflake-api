@@ -17,6 +17,7 @@ export class API {
     public tokeninfo(token: string): Promise<Object>;
     public base64(message: string, type: string): Promise<String>;
     public me(): Promise<Object>;
+    public on(error: string): Event;
 }
 
 export const version: string;

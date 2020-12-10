@@ -53,13 +53,12 @@ class API{
         if(typeof(gender)!= 'string') throw new err(`Expected gender to be string, recieved ${typeof(gender)}`);
         if(typeof(user)!= 'string') throw new err(`Expected user id to be string, recieved ${typeof(user)}`);
        
-        const res = await fetch(`${base}/chatbot?message=${encodeURIComponent(message)}?name=${encodeURIComponent(name)}?gender=${encodeURIComponent(gender)}?user=${encodeURIComponent(user)}`,{
+        const res = await fetch(`${base}/chatbot?message=${encodeURIComponent(message)}&name=${encodeURIComponent(name)}&gender=${encodeURIComponent(gender)}&user=${encodeURIComponent(user)}`,{
             headers:{
                 'authorization': token
             }
         });
         const response = await res.json();
-        console.log(response)
          if(response.error) throw new err(response.error)
         return response.message;
     }
@@ -266,10 +265,12 @@ class API{
         return response;
     }
 
+
     /**pokemon - Returns data about a pokemon
      * 
      * @param {string} pokemon Name of the pokemon 
      */
+
 
     async pokemon(query){
         if(!query) throw new err("No query was provided to search");
@@ -284,5 +285,20 @@ class API{
     };
 
 
+    /**me - Returns info about token
+     * 
+     */
+
+
+     async me(){
+         const response = await fetch(`${base}/me`, {
+             headers:{
+                 'authorization': token
+             }
+         });
+         const res = await response.json();
+         if(res.error) throw new err(res.error);
+         return res;
+     }
 }
 module.exports = API;

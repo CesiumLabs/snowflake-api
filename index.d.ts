@@ -16,6 +16,7 @@ export class API {
     public reverse(message: string): Promise<String>;
     public tokeninfo(token: string): Promise<Object>;
     public base64(message: string, type: string): Promise<String>;
+    public me(): Promise<Object>;
 }
 
 export const version: string;

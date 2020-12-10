@@ -50,6 +50,7 @@ Default values: `name`: Chatbot, `gender`: female, `userid`: 1
 `tokeninfo(<token>)` - Returns the info about user from the token *(Note: token isn't stored anywhere)*
 
 `base64(<message>, type[encode/decode])` - Returns base64 encoded/decoded message *(`type` specified must be either as `encode` or `decode`, default value is `encode`)*
+`me()` -  Returns info about user from token provided
  
 # Links
 - **[Discord Support Server](https://discord.gg/QTxmjwENQx)**

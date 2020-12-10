@@ -1,5 +1,6 @@
 # Snowflake-API
 Quick [Snowflake API](https://api.snowflakedev.cf:9019) wrapper for beginners.
+
 ![Snowflake-API](https://nodei.co/npm/snowflake-api.png)
 
 # Features
@@ -48,4 +49,4 @@ api.morse("Test").then(console.log);
  
 # Links
 - **[Discord Support Server](https://discord.gg/QTxmjwENQx)**
-- **[GitHub](https://github.com/udit2303/snowflake-api)**
+- **[GitHub](https://github.com/DevSnowflake/snowflake-api)**

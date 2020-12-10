@@ -49,4 +49,4 @@ api.morse("Test").then(console.log);
  
 # Links
 - **[Discord Support Server](https://discord.gg/QTxmjwENQx)**
-- **[GitHub](https://github.com/udit2303/snowflake-api)**
+- **[GitHub](https://github.com/DevSnowflake/snowflake-api)**

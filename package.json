@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/DevSnowflake/snowflake-api#readme",
   "dependencies": {
+    "jsdoc-skyceil": "^1.0.6",
     "node-fetch": "^2.6.1"
   }
 }

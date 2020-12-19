@@ -1,7 +1,8 @@
 declare module "snowflake-api" {
 export class API {
-    constructor(Token: string);
 
+    constructor(Token: string);
+    on(event: 'error', listener: (name: string) => void) : this;
     public chatbot(message: string, name: string, gender: string, userid: string): Promise<string>;
     public token(): Promise<String>;
     public meme(subreddit: string): Promise<Object>;
@@ -17,7 +18,6 @@ export class API {
     public tokeninfo(token: string): Promise<Object>;
     public base64(message: string, type: string): Promise<String>;
     public me(): Promise<Object>;
-    public on(error): error
 }
 
 export const version: string;

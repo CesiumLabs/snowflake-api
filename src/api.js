@@ -1,26 +1,45 @@
 const err = require('./APIError');
-const base = 'http://api.snowflakedev.cf:9019/api'
+const base = 'http://api.snowflakedev.cf:8332/api'
 const fetch = require("node-fetch");
 let token;
 const EventEmitter = require("events");
+/**
+ * @example
+         * const {API} = require("snowflake-api");
+         * const api = new API("YOUR_TOKEN_HERE");
+         * api.chatbot("hello", "Udit", "male").then(console.log);
+         * api.meme().then(console.log)
+ */
 class API extends EventEmitter{
  
-    constructor(Token){
-        super()
-
-
-        /**Token - API Token
-         * @param {string} token API Token
+          /**
+         * API
+         * @param {string} Token - Your API Token found at http://api.snowflakedev.cf:8332/dashboard
+         * @param {boolean} Check - Wheter to check if the API token provided is correct. Returns no error if check is completed
+         * Note: if check is enabled, it will increase the request count for the API.
          */
 
-
+    constructor(Token, check = false){
+        super();
         if(!Token) throw new err("No API TOKEN was Provided");
         if(typeof(Token) != 'string') throw new err("Invalid type of API Key was provided");
         token = Token;
+        if(check){
+        fetch(base + '/chatbot?message=Test', {
+            headers:{
+                authorization: token
+            }
+        }).then(res =>{
+            if(res.status !== 200){
+                throw new err(`Something went wrong while Checking. Check your API Token or refer this message. \n Status Code: ${res.status} \n Status Text: ${res.statusText}`)
+            }
+        })
+      }
     }
 
-    /**meme - Returns a meme from Subreddit
-     * @param {string} subreddit Subreddit to get the meme from 
+    /**
+     * @param {string} sbr - Subreddit to search 
+     * @returns {object} The meme object containing the link, subreddit, etc
      */
 
 
@@ -47,12 +66,13 @@ class API extends EventEmitter{
     };
 
 
-    /**chatbot - Message for AI Chatbot
-     * 
-     * @param {string} message Message for chatbot 
-     * @param {string} name Name for the chatbot
-     * @param {string} gender Gender of the chatbot
-     * @param {string} user User id who triggered the chatbot
+    
+    /**
+     * @param {string} message - The message provided 
+     * @param {string} name - The name of the bot
+     * @param {string} gender - The gender of the bot
+     * @param {string} user - The user id
+     * @returns {string} The message by the chatbot
      */
 
 
@@ -79,9 +99,8 @@ class API extends EventEmitter{
         return response.message;
     }
 
-
-    /**roast - Returns a string
-     * 
+    /**
+     * @returns {string} The string containing the roast
      */
 
 
@@ -104,8 +123,8 @@ class API extends EventEmitter{
     }
 
 
-    /**dog - Returns buffer for image of a dog
-     * 
+    /**
+     * @returns {buffer} Buffer of the dog Image
      */
 
 
@@ -124,9 +143,9 @@ class API extends EventEmitter{
     }
 
 
-    /**fox - Returns buffer for image of a fox
-     * 
-     */
+   /**
+    * @returns {buffer} Buffer of the Fox Image
+    */
 
 
     async fox(){
@@ -144,8 +163,8 @@ class API extends EventEmitter{
     }
 
 
-    /**duck - Returns buffer for image of a duck
-     * 
+    /**
+     * @returns {buffer} Buffer of the Duck Image
      */
 
 
@@ -164,9 +183,10 @@ class API extends EventEmitter{
     }
 
 
-    /**cat - Returns buffer for image of a cat
-     * 
+     /**
+     * @returns {buffer} Buffer of the Cat Image
      */
+
 
 
     async cat(){
@@ -184,10 +204,11 @@ class API extends EventEmitter{
     }
 
 
-    /**morse - Returns string encoded in morse code or decoded from morse code 
+    /**
      * 
-     * @param {string} data Data to encode/decode
-     * @param {string} type Type of request (encode/decode)
+     * @param {string} data  The data to encode/decode
+     * @param {string} type Wheter to encode or decode the data given
+     * @returns {string} Processed data
      */
 
 
@@ -214,10 +235,11 @@ class API extends EventEmitter{
     }
 
 
-    /**base64 - Returns string encoded in base64 code or decoded from base64 code 
+    /**
      * 
-     * @param {string} data Data to encode/decode
-     * @param {string} type Type of request (encode/decode)
+     * @param {string} data The data to be encoded/decoded 
+     * @param {string} type Wheter to encode or Decode the data
+     * @returns {string} Processed Data
      */
 
 
@@ -242,9 +264,9 @@ class API extends EventEmitter{
     }
 
 
-    /**token - Returns a Discord Token (Invalid)
-     * 
-     */
+   /**
+    * @returns {string} Random NON-WORKING Discord Token
+    */
 
 
     async token(){
@@ -266,9 +288,10 @@ class API extends EventEmitter{
     }
 
 
-    /**tokeninfo - Fetches Info about user from Token 
+    /**
      * 
-     * @param {string} token Token to fetch data from 
+     * @param {string} data The Discord Token to provide Info about
+     * @returns {object} Info about the Token
      */
 
 
@@ -292,9 +315,10 @@ class API extends EventEmitter{
     }
 
 
-    /**reverse - Revers a message
+    /**
      * 
-     * @param {string} message Message to reverse 
+     * @param {string} data The message to be reversed 
+     * @returns {string} The message Reversed
      */
 
 
@@ -318,17 +342,19 @@ class API extends EventEmitter{
     }
     
     
-    /**registry - Search a package in npm, py or deno registry
+    /**
      * 
-     * @param {string} query Package to Search
-     * @param {string} registry Registry to search the package in
+     * @param {string} query The query to Search for 
+     * @param {string} type Registry to search for. Valid Options: npm, pypi & deno
+     * @returns {object} Information about the package found
      */
 
 
-    async registry(query, type){
+    async registry(query, type = 'npm'){
         if(!query) throw new err("No query was provided to search");
         if(!type) throw new err("No registry was specified");
         if(typeof(type) != 'string') throw new err(`Inalid type of string, recieved '${type(type)}', expected 'string'`);
+        if(type !== 'npm' && type !== 'pypi' && type !== 'deno') throw new err(`Expected 'type' to be 'npm', 'pypi' or 'deno', recieved ${type}`);
         const res = await fetch(`${base}/registry/${type}?module=${encodeURIComponent(query)}`, {
             headers:{
                 'authorization': token
@@ -347,11 +373,11 @@ class API extends EventEmitter{
     }
 
 
-    /**pokemon - Returns data about a pokemon
+    /**
      * 
-     * @param {string} pokemon Name of the pokemon 
+     * @param {string} query The pokemon to search for
+     * @returns {object} Info about the Pokemon
      */
-
 
     async pokemon(query){
         if(!query) throw new err("No query was provided to search");
@@ -373,9 +399,9 @@ class API extends EventEmitter{
     };
 
 
-    /**me - Returns info about token
-     * 
-     */
+ /**
+  * @returns {object} Info about the Token Owner
+  */
 
 
      async me(){

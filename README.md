@@ -1,7 +1,7 @@
 
 # Snowflake-API
 
-Quick [Snowflake API](https://api.snowflakedev.cf:9019) wrapper for beginners.
+Quick [Snowflake API](http://api.snowflakedev.cf:8332) wrapper for beginners.
 
   
 
@@ -117,7 +117,6 @@ Default values: `name`: Chatbot, `gender`: female, `userid`: 1
   
 
 # Links
-
+- **[Documentation](https://snowflake-api.js.org)**
 - **[Discord Support Server](https://discord.gg/QTxmjwENQx)**
-
 - **[GitHub](https://github.com/DevSnowflake/snowflake-api)**

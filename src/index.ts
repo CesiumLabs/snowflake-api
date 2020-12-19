@@ -242,6 +242,10 @@ class Client {
             }
 
             return type === "BUFFER" ? res.buffer() : res.json();
+        })
+        .then(res => {
+            if (res.error) throw new Error(`[API_ERROR] ${res.error}`);
+            return res;
         });
     }
 

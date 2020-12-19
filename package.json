@@ -1,0 +1,36 @@
+{
+  "name": "snowflake-api",
+  "version": "3.0.0",
+  "description": "Official api wrapper for snowflake api.",
+  "main": "build/main.js",
+  "scripts": {
+    "test": "cd test && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevSnowflake/snowflake-api.git"
+  },
+  "keywords": [
+    "API",
+    "Snowflake",
+    "SnowflakeDev",
+    "meme",
+    "chatbot",
+    "dog api",
+    "cat api",
+    "morse api"
+  ],
+  "author": "Udit Shrivastava <udit2303@gmail.com, https://udit.gq>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/DevSnowflake/snowflake-api/issues"
+  },
+  "homepage": "https://github.com/DevSnowflake/snowflake-api#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.14",
+    "@types/node-fetch": "^2.5.7"
+  }
+}

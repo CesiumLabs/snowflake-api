@@ -1,0 +1,9 @@
+# deps
+node_modules/
+yarn.lock
+
+# compiled files
+build/
+
+# test
+test/

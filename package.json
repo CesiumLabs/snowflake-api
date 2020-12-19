@@ -4,7 +4,8 @@
   "description": "Official api wrapper for snowflake api.",
   "main": "build/main.js",
   "scripts": {
-    "test": "cd test && node index.js"
+    "test": "cd test && node index.js",
+    "compile": "tsc"
   },
   "repository": {
     "type": "git",

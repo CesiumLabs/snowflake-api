@@ -3,7 +3,14 @@ import fetch from "node-fetch";
 import * as Types from "./typings/types";
 
 class Client {
+    /**
+     * Client api key
+     */
     token: string;
+
+    /**
+     * API base url
+     */
     BASE_URL: string;
 
     /**
@@ -18,10 +25,6 @@ class Client {
         this.BASE_URL = "http://api.snowflakedev.cf:8332";
 
         if (!token && typeof process.env.SNOWAPI_TOKEN === "string") {
-
-            /**
-             * Client api key
-             */
             Object.defineProperty(this, "token", {
                 value: process.env.SNOWAPI_TOKEN
             });
@@ -66,14 +69,14 @@ class Client {
 
         const chatbotparams = () => {
             let u = "";
-            if (!!name) u += `&name=${name}`;
-            if (!!gender) u += `&gender=${gender}`;
-            if (!!user) u += `&user=${user}`;
+            if (!!name) u += `&name=${encodeURIComponent(name)}`;
+            if (!!gender) u += `&gender=${encodeURIComponent(gender)}`;
+            if (!!user) u += `&user=${encodeURIComponent(user)}`;
 
             return u;
         }
 
-        const response = await this._request(`chatbot?message=${message}${chatbotparams()}`, "JSON");
+        const response = await this._request(`chatbot?message=${encodeURIComponent(message)}${chatbotparams()}`, "JSON");
         return response.message || "sorry, I can't understand.";
     }
 

@@ -1,5 +1,5 @@
 const err = require('./APIError');
-const base = 'http://api.snowflakedev.cf:8332/api'
+const base = 'http://api.snowflakedev.cf:8342/api'
 const fetch = require("node-fetch");
 let token;
 const EventEmitter = require("events");

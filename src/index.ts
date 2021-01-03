@@ -1,6 +1,7 @@
 import { readFileSync } from "fs";
 import fetch from "node-fetch";
 import * as Types from "./typings/types";
+import { Constants } from "./Constants";
 
 class Client {
     /**
@@ -22,7 +23,7 @@ class Client {
         /**
          * API base url
          */
-        this.BASE_URL = "http://api.snowflakedev.cf:8332";
+        this.BASE_URL = Constants.BASE_URL;
 
         if (!token && typeof process.env.SNOWAPI_TOKEN === "string") {
             Object.defineProperty(this, "token", {
@@ -227,20 +228,23 @@ class Client {
                 "Authorization": this.token
             }
         })
-        .then(res => {
+        .then(async res => {
             if (res.status !== 200) {
-                if (res.status >= 500) throw new Error(`[API_ERROR] Internal Server Error: ${res.status}`);
+                let json: any;
+
+                try {
+                    json = await res.json();
+                } catch(e) {}
+
+                if (res.status >= 500) throw new Error(`[API_INTERNAL_ERROR_${res.status}] ${json && json.error || res.statusText}`);
 
                 switch(res.status) {
                     case 400:
-                        throw new Error("[API_ERROR] Bad api request");
                     case 401:
                     case 403:
-                        throw new Error("[API_ERROR] Invalid api key");
                     case 404:
-                        throw new Error("[API_ERROR] Route not found");
                     case 429:
-                        throw new Error("[API_ERROR] Too many requests");
+                        throw new Error(`[API_ERROR_${res.status}] ${json && json.error || res.statusText}`);
                 }
             }
 
@@ -262,5 +266,5 @@ class Client {
 
 }
 
-export { Client };
+export { Client, Constants };
 export default Client;

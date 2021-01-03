@@ -22,6 +22,9 @@
     "morse api"
   ],
   "author": "Udit Shrivastava <udit2303@gmail.com, https://udit.gq>",
+  "contributors": [
+    "Snowflake107 <devsnowflake107@gmail.com> (https://github.com/Snowflake107)"
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/DevSnowflake/snowflake-api/issues"

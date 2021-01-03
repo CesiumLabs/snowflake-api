@@ -2,7 +2,7 @@
   "name": "snowflake-api",
   "version": "3.0.0",
   "description": "Official api wrapper for snowflake api.",
-  "main": "build/main.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "cd test && node index.js",
     "compile": "tsc"

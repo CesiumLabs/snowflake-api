@@ -215,6 +215,24 @@ class Client {
     }
 
     /**
+     * Returns basic github stats of a user
+     * @param username GitHub username
+     */
+    async githubStats(username: string): Promise<Types.GitHubUserInterface> {
+        const res = await this._request(`githubstats?username=${username}`, "JSON");
+        return res;
+    }
+
+    /**
+     * Returns basic youtube stats of a channel
+     * @param channelID YouTube channel id
+     */
+    async youtube(channelID: string): Promise<Types.YouTubeChannelInterface> {
+        const res = await this._request(`youtube?channel=${channelID}`, "JSON");
+        return res;
+    }
+
+    /**
      * Private method used to request
      * @private
      * @ignore

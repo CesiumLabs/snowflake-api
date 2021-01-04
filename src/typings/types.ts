@@ -139,3 +139,30 @@ export interface AIChatbotInterface {
     user?: string;
     message: string;
 }
+
+export interface GitHubUserInterface {
+    name: string;
+    avatar: string;
+    followers: number;
+    repos: number;
+    pullRequests: number;
+    issues: number;
+    npmDownloads: number;
+}
+
+export interface YTVideos {
+    id: string;
+    title: string;
+    url: string;
+    author: string;
+    thumbnail: string;
+    publishedAt: number;
+}
+
+export interface YouTubeChannelInterface {
+    channel: {
+        name: string;
+        url: string;
+    };
+    videos: YTVideos[]
+}

@@ -117,7 +117,7 @@ class Client {
      * Random roast
      */
     async roast(): Promise<string> {
-        const res = await this._request("cat", "JSON");
+        const res = await this._request("roast", "JSON");
         return res.roast || "";
     }
 

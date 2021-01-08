@@ -1,6 +1,6 @@
 {
   "name": "snowflake-api",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Official api wrapper for snowflake api.",
   "main": "build/index.js",
   "scripts": {

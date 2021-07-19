@@ -38,6 +38,10 @@ class Client {
         }
     }
 
+    setBaseURL(url: string) {
+        this.BASE_URL = url;
+    }
+
     /**
      * Returns meme object
      * @param sbr Subreddit
